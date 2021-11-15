@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind</title>
+</head>
+<style>
+    img {
+        height: 150px;
+    }
+
+    .rotate {
+        transform: rotate(30deg);
+    }
+
+    .moveLeft {
+        margin-left: 100px;
+    }
+</style>
+<body>
+
+<div id="app">
+    <h1 :style="{fontSize: fs+'px', color: fc}">{{ name.split(" ").join("-") }}</h1>
+    <h3>{{ hungry ? "ဗိုက်ဆာတယ်" : "မဆာပါဘူးဗျာ" }}</h3>
+    <h3>I'm <span :title="name.split(' ').join('-')">AK</span></h3>
+    <br><br><br>
+    <img :src="img" alt="" :class="[moveLeft, {rotate:hungry}]">
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+
+    let app = new Vue({
+        el: "#app",
+        data: {
+            name: "aung khant",
+            hungry: true,
+            img: 'img/one.jpg',
+            rotate: "rotate",
+            moveLeft: "moveLeft",
+            fs: 100,
+            fc: "red",
+        }
+    });
+
+</script>
+
+</body>
+</html>
