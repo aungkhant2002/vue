@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computed Property</title>
+</head>
+<style>
+
+</style>
+<body>
+
+<div id="app">
+    <h1>{{ name }}</h1>
+    <p>length - {{ lengthOfName }}</p>
+    <p>start - {{ startChar }}</p>
+    <p>reverse - {{ reverseName }}</p>
+    <p>short - {{ shortName }}</p>
+
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+
+    let app = new Vue({
+        el: "#app",
+        data: {
+            name: "aung khant"
+        },
+        methods: {},
+        computed: {
+            lengthOfName() {
+                return this.name.length;
+            },
+
+            startChar() {
+                return this.name[0];
+            },
+
+            reverseName() {
+                return this.name.split("").reverse().join("");
+            },
+
+            shortName() {
+                return this.name.split(" ").map(el => el[0]).join("").toUpperCase();
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
