@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+</head>
+<style>
+
+    table {
+        width: 50%;
+        margin-top: 30px;
+        border-collapse: collapse;
+    }
+
+    tr, th, td {
+        border: 1px solid blue;
+        padding: 10px 15px;
+    }
+
+</style>
+<body>
+
+<div id="app">
+
+    <h3>Item Lists &nbsp;&nbsp;&nbsp;<span>(Total - {{ itemTotal }})</span></h3>
+    <input type="text" v-model="newItemName" placeholder="Item Name">
+    <input type="text" v-model="newItemPrice" placeholder="Item Price" @keyup.enter="addNewItem()">
+    <button @click="addNewItem()">Add</button>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in items">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+
+    let app = new Vue({
+        el: "#app",
+        data: {
+            items: [
+                {id: 1, name: "apple", "price": 300},
+                {id: 2, name: "orange", "price": 250},
+                {id: 3, name: "mango", "price": 200},
+            ],
+            newItemName: "",
+            newItemPrice: "",
+        },
+        methods: {
+            addNewItem() {
+                this.items.push(
+                    {id: this.items.length+1, name: this.newItemName, price: this.newItemPrice},
+                );
+                this.newItemName = "";
+                this.newItemPrice = "";
+            }
+        },
+        computed: {
+            itemTotal() {
+                return this.items.length;
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
