@@ -1,11 +1,19 @@
 <template>
-    <li>{{ listText }}</li>
+    <li>
+        {{ listText }}
+        <button @click="toRun()">del</button>
+    </li>
 </template>
 
 <script>
 export default {
     name: "List",
-    props: ['listText']
+    props: ['listText', 'currentIndex'],
+    methods: {
+        toRun() {
+            this.$emit("toParent", this.currentIndex);
+        }
+    },
 
 }
 </script>
